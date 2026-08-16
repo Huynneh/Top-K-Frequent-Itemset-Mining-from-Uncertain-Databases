@@ -1,0 +1,9 @@
+dataset,densityScore,densityCategory,algorithm,runtimeMs,memoryBytes,candidates,topKAvgExpSup
+sample_dense.txt,0.567391,DENSE,NaiveApriori,9,295376,51,74.808803
+sample_dense.txt,0.567391,DENSE,UEclatTopK,9,888064,629,74.808803
+sample_dense.txt,0.567391,DENSE,UDiffsetTopK,8,826816,598,74.808803
+sample_dense.txt,0.567391,DENSE,DensityAdaptiveTopK,32,100472,51,74.808803
+sample_sparse.txt,0.138907,SPARSE,NaiveApriori,2,860744,301,2.874135
+sample_sparse.txt,0.138907,SPARSE,UEclatTopK,2,517136,5802,2.874135
+sample_sparse.txt,0.138907,SPARSE,UDiffsetTopK,5,1679880,8136,2.874135
+sample_sparse.txt,0.138907,SPARSE,DensityAdaptiveTopK,35,333488,5802,2.874135

@@ -1,0 +1,8 @@
+SO SANH CAC THUAT TOAN TREN DATASET: sample_dense.txt
+========================================================
+Thuat toan             Runtime(ms)    BoNho(approx)    SoCandidate   
+--------------------------------------------------------------
+NaiveApriori           9              288.45 KB        51            
+UEclatTopK             9              867.25 KB        629           
+UDiffsetTopK           8              807.44 KB        598           
+DensityAdaptiveTopK    32             98.12 KB         51            

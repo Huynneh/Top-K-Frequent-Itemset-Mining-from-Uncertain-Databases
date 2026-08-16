@@ -1,0 +1,8 @@
+SO SANH CAC THUAT TOAN TREN DATASET: sample_sparse.txt
+========================================================
+Thuat toan             Runtime(ms)    BoNho(approx)    SoCandidate   
+--------------------------------------------------------------
+NaiveApriori           2              840.57 KB        301           
+UEclatTopK             2              505.02 KB        5802          
+UDiffsetTopK           5              1.60 MB          8136          
+DensityAdaptiveTopK    35             325.67 KB        5802          

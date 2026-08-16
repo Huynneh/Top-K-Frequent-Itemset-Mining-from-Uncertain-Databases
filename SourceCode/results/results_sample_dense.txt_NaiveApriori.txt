@@ -1,0 +1,26 @@
+========================================================
+THUAT TOAN      : NaiveApriori
+DATASET         : sample_dense.txt
+K               : 10
+THOI GIAN CHAY  : 9 ms
+BO NHO SU DUNG  : 288.45 KB  (xap xi, xem util.MemoryProfiler)
+SO CANDIDATE    : 51
+THOI DIEM CHAY  : 2026-08-16T19:53:08.593883
+--------------------------------------------------------
+THONG TIN BO SUNG:
+  mode = HORIZONTAL (quét lại database mỗi candidate)
+  maxLevelReached = 2
+========================================================
+
+TOP-10 ITEMSET (sap xep giam dan theo expected support):
+
+  1. {7}                                      expSup = 79.441798
+  2. {13}                                     expSup = 78.699022
+  3. {5}                                      expSup = 78.520926
+  4. {10}                                     expSup = 75.559687
+  5. {14}                                     expSup = 75.068752
+  6. {9}                                      expSup = 74.538106
+  7. {12}                                     expSup = 72.039362
+  8. {2}                                      expSup = 71.690151
+  9. {6}                                      expSup = 71.629271
+ 10. {1}                                      expSup = 70.900957

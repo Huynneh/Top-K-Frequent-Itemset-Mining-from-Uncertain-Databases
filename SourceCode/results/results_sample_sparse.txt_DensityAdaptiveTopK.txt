@@ -1,0 +1,30 @@
+========================================================
+THUAT TOAN      : DensityAdaptiveTopK
+DATASET         : sample_sparse.txt
+K               : 10
+THOI GIAN CHAY  : 35 ms
+BO NHO SU DUNG  : 325.67 KB  (xap xi, xem util.MemoryProfiler)
+SO CANDIDATE    : 5802
+THOI DIEM CHAY  : 2026-08-16T19:53:08.778056800
+--------------------------------------------------------
+THONG TIN BO SUNG:
+  densityMetrics = structDensity=0.0078, avgTidLenNorm=0.0078, meanProb=0.6633, stdProb=0.1894, densityScore=0.1389
+  lowThreshold = 0.35
+  highThreshold = 0.55
+  chosenMode = VERTICAL-TIDSET (UEclatTopK) - vung SPARSE
+  mode = VERTICAL (U-tidset, single DB scan)
+  numDistinctItems = 265
+========================================================
+
+TOP-10 ITEMSET (sap xep giam dan theo expected support):
+
+  1. {302}                                    expSup = 3.517823
+  2. {216}                                    expSup = 3.263305
+  3. {317}                                    expSup = 3.164214
+  4. {34}                                     expSup = 3.076484
+  5. {185}                                    expSup = 2.944016
+  6. {120}                                    expSup = 2.779039
+  7. {384}                                    expSup = 2.620742
+  8. {421}                                    expSup = 2.574496
+  9. {490}                                    expSup = 2.408730
+ 10. {125}                                    expSup = 2.392506
