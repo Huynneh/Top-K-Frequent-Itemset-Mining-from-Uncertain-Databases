@@ -2,8 +2,6 @@
 
 Cài đặt Java cho đề tài **Top-K Frequent Itemset Mining from Uncertain Databases**. Đọc dataset chuẩn định dạng SPMF, chạy 4 thuật toán so sánh theo mật độ dữ liệu, xuất kết quả top-k kèm thời gian chạy và bộ nhớ sử dụng.
 
-Tài liệu lý thuyết đầy đủ (định nghĩa, chứng minh, ví dụ số đã kiểm chứng bằng chính code này) nằm ở file `ly-thuyet-tong-hop.md` đi kèm.
-
 ## 1. Bốn thuật toán cài đặt
 
 | Thuật toán | Hướng tiếp cận | Mô tả |
@@ -12,8 +10,6 @@ Tài liệu lý thuyết đầy đủ (định nghĩa, chứng minh, ví dụ s�
 | `UEclatTopK` | Vertical — U-tidset đầy đủ | Quét DB 1 lần, xây U-tidset (TID + xác suất), mở rộng itemset bằng merge-join, cắt tỉa bằng Q-Heap threshold-raising. |
 | `UDiffsetTopK` | Vertical — U-diffset | Biến thể tối ưu bộ nhớ: chỉ lưu TID thô (không kèm xác suất), tính lại expected support qua công thức đệ quy diffset. Lợi thế rõ ở dữ liệu **dense** (phần "mất đi" nhỏ), bất lợi ở **sparse** (phần "mất đi" gần bằng toàn bộ). |
 | `DensityAdaptiveTopK` | Thích ứng | Tính `densityScore` (`density.DensityCalculator`) rồi tự động chọn 1 trong 3 thuật toán trên theo 2 ngưỡng (`--lowThreshold`, `--highThreshold`): dense → NaiveApriori, trung bình → UDiffsetTopK, sparse → UEclatTopK. |
-
-Toàn bộ 3 thuật toán vertical đã được **kiểm chứng cho ra kết quả giống hệt NaiveApriori** trên mọi test case (xem mục 5).
 
 ## 2. Cấu trúc thư mục
 
@@ -56,14 +52,6 @@ java -cp out app.Main \
   --k=10 --algorithms=all --output=results \
   --parallel=false --probMin=0.3 --probMax=1.0 --seed=42
 ```
-
-### Đọc dataset chuẩn SPMF thật (chưa có xác suất)
-
-Dataset SPMF chuẩn (Chess, Mushroom, Retail, Kosarak, T10I4D100K, Accidents...) có thể tải trực tiếp từ trang SPMF (`philippe-fournier-viger.com/spmf/datasets`) — định dạng mỗi dòng là các item id cách nhau khoảng trắng, đúng như `DatasetReader.read()` hỗ trợ sẵn. Chỉ cần trỏ `--datasets=` tới file đã tải, chương trình tự gắn xác suất giả lập (uniform) để mô phỏng uncertain database — đây là cách thực nghiệm chuẩn trong toàn bộ literature uncertain FIM.
-
-### Đọc dataset đã có xác suất tường minh
-
-Dùng `--explicitProb=true` khi file dataset đã ghi sẵn xác suất theo định dạng `item:prob item:prob ...` mỗi dòng (xem `data/abcd_example.txt`). Item có thể là chữ (A, B, C...) — chương trình tự ánh xạ sang id nội bộ.
 
 ## 4. Tham số dòng lệnh đầy đủ
 
