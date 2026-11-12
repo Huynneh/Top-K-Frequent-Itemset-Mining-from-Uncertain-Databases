@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Top-K Frequent Itemset Mining from Uncertain Databases — Java
 
 Cài đặt Java cho đề tài **Top-K Frequent Itemset Mining from Uncertain Databases**. Đọc dataset chuẩn định dạng SPMF, chạy 4 thuật toán so sánh theo mật độ dữ liệu, xuất kết quả top-k kèm thời gian chạy và bộ nhớ sử dụng.
@@ -73,3 +74,5 @@ java -cp out app.Main \
 - `results_<dataset>_<thuattoan>.txt` — top-k itemset, expected support, **runtime + bộ nhớ xấp xỉ**, số candidate, thông tin bổ sung (chế độ đã chọn, chỉ số mật độ...).
 - `summary_<dataset>.txt` — bảng so sánh nhanh runtime/bộ nhớ giữa các thuật toán trên cùng dataset.
 - **`benchmark_summary.csv`** — tổng hợp TOÀN BỘ (mọi dataset × mọi thuật toán) kèm `densityScore`, `densityCategory` (DENSE/MEDIUM/SPARSE), runtime, bộ nhớ, số candidate, expected-support trung bình của top-k. 
+=======
+>>>>>>> 5fa0f96 (update source code)

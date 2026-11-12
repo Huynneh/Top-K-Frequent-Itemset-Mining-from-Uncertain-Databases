@@ -15,7 +15,9 @@ import util.MemoryProfiler;
  *   và tính expSup thông qua công thức đệ quy:
  *
  *     U-diffset(X∪{i}, X) = { t ∈ TID(X) : t ∉ TID(i) }
- *     expSup(X∪{i}) = expSup(X) − Σ_{t ∈ U-diffset} p_X(t)
+ *     expSup(X∪{i}) = expSup(X) − Σ_{t ∈ U-diffset} p_X(t) − Σ_{t ∈ TID(X∪{i})} p_X(t)·(1 − p(i,t))
+ *   (số hạng thứ hai là phần mất do p(i,t) < 1 ở các giao dịch vẫn còn chứa X∪{i};
+ *    bản đầu tiên bỏ sót số hạng này nên cho expSup sai khi xác suất nhỏ hơn 1.)
  *
  *   - Dữ liệu DENSE: |diffset| thường nhỏ hơn nhiều so với |TID(X)| (vì phần lớn
  *     transaction chứa X cũng chứa i) -> ít phải tính lại product xác suất -> nhanh
@@ -169,10 +171,18 @@ public class UDiffsetTopK implements Algorithm {
             int[] newTids = intersectTids(prefixTids, itemTids);
             int[] removedTids = diffTids(prefixTids, newTids); // = diffset thực sự dùng để trừ
 
-            // expSup mới = expSup cũ trừ đi phần "mất đi" (diffset) — không cần quét lại DB
+            // expSup mới = expSup cũ trừ đi phần "mất đi" — không cần quét lại DB.
+            // Bản trước chỉ trừ Σ_{t ∈ diffset} P(X,t), tức coi p(i,t) = 1 ở các giao dịch còn lại,
+            // nên expSup bị ƯỚC LƯỢNG CAO khi p(i,t) < 1. Phần mất đúng là
+            //   Σ_{t ∈ T(X)} P(X,t)·(1 − p(i,t))
+            //   = Σ_{t ∈ diffset} P(X,t) + Σ_{t ∈ T(X∪i)} P(X,t)·(1 − p(i,t)).
             double lost = 0;
             for (int t : removedTids) {
                 lost += productProb(prefixItems, t, itemTidProb);
+            }
+            Map<Integer, Double> probOfItem = itemTidProb.get(item);
+            for (int t : newTids) {
+                lost += productProb(prefixItems, t, itemTidProb) * (1.0 - probOfItem.get(t));
             }
             double newExpSup = prefixExpSup - lost;
             candidateCount++;
